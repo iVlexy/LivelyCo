@@ -3,6 +3,18 @@
     <mat-icon>menu</mat-icon>
   </button>
   <h1>Lively Fencing</h1>
+  <div class="logo">
+    <img src="assets/logo-small.png">
+  </div>
+  <div class="spacer"></div>
+  <div class="quick-navigation">
+    <button mat-raised-button>Services</button>
+    <button mat-raised-button>Projects</button>
+    <button mat-raised-button>About Us</button>
+    <button class="phone-icon" mat-icon-button matTooltip="Contact">
+      <mat-icon>phone</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 <mat-sidenav-container [hasBackdrop]="isSmallScreen()">
   <mat-sidenav #sidenav [mode]="isSmallScreen() ? 'over' : 'side'" [fixedInViewport]="isSmallScreen()">

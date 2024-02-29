@@ -12,5 +12,7 @@
     - contact
     - quote
     - logo
-
+        - 150x150
+        - 192
+        - 512
 

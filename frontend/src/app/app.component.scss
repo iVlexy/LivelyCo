@@ -4,9 +4,8 @@
   overflow: hidden;
   height: 100%;
 
-  mat-sidenav-container, mat-sidenav-content {
+  mat-sidenav-container {
     height: 100%;
-    overflow: hidden;
   }
 
   mat-sidenav {
@@ -20,6 +19,7 @@
     .logo {
       display: grid;
       place-content: center;
+      cursor: pointer;
       img {
         width: 50px;
         height: 50px;
@@ -35,5 +35,8 @@
       align-items: center;
       gap: 0.5rem;
     }
+    .toPointer {
+      cursor: pointer;
+  }
   }
 }

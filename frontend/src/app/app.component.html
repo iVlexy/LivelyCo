@@ -2,9 +2,9 @@
   <button mat-icon-button aria-label="Menu icon" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <h1>Lively Fencing</h1>
+  <h1 [routerLink]="['']" class="toPointer">Lively Fencing</h1>
   <div class="logo">
-    <img src="assets/logo-small.png">
+    <img src="assets/logo-small.png" [routerLink]="['']">
   </div>
   <div class="spacer"></div>
   <div class="quick-navigation">

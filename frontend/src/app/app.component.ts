@@ -11,11 +11,12 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { RouterOutlet } from '@angular/router';
 import { distinctUntilChanged, map } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterOutlet, MatFormField, MatLabel, MatInput, MatNavList, MatSidenavContainer, MatSidenavContent, MatSidenav, MatToolbar, MatIconButton, MatIcon, MatTooltip, MatButton ],
+  imports: [ RouterModule, RouterOutlet, MatFormField, MatLabel, MatInput, MatNavList, MatSidenavContainer, MatSidenavContent, MatSidenav, MatToolbar, MatIconButton, MatIcon, MatTooltip, MatButton ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding: 1rem;
+  gap: 5rem;
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-template-rows: 500px;
+  grid-gap: 5rem;
+  grid-template-areas:
+    ". . c p p p p . . . . . . . .";
+
+  &:nth-child(even) {
+  grid-template-areas:
+    ". . . . . . . p p p p c . . .";
+  }
+
+  .mat-mdc-card {
+    grid-area: c;
+    width: 400px;
+    img {
+      max-width: 400px;
+      object-fit: contain;
+      max-height: 400px;
+    }
+  }
+
+  p {
+    grid-area: p;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -4rem;
+  }
+}

@@ -38,4 +38,22 @@ section {
     position: relative;
     top: -4rem;
   }
+  div{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem;
+  gap: 5rem;
+  }
+  .test{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem;
+  gap: 5rem;
+  }
 }

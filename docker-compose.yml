@@ -9,12 +9,13 @@ services:
     ports:
       - 8156:8156
 networks:
+  livelyco:
     name: livelyco
     external: true
 
 
 
-# database container
+  # database container
 #  database:
 #    image: postgres
 #    ports:

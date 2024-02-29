@@ -11,7 +11,12 @@
   mat-sidenav {
     min-width: 250px;
   }
-
+  ::ng-deep .mat-drawer-inner-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
   mat-toolbar {
     display: flex;
     gap: 1rem;
@@ -25,11 +30,6 @@
         height: 50px;
       }
     }
-
-    .spacer {
-      flex: 1 1 auto;
-    }
-
     .quick-navigation {
       display: flex;
       align-items: center;
@@ -37,6 +37,9 @@
     }
     .toPointer {
       cursor: pointer;
+    }
   }
+  .spacer {
+    flex: 1 1 auto;
   }
 }

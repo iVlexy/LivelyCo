@@ -19,6 +19,7 @@
 <mat-sidenav-container [hasBackdrop]="isSmallScreen()">
   <mat-sidenav #sidenav [mode]="isSmallScreen() ? 'over' : 'side'" [fixedInViewport]="isSmallScreen()">
     <mat-nav-list (click)="isSmallScreen() ? sidenav.close() : null">
+       <a mat-list-item routerLinkActive="selected" [routerLink]="['']">Home</a>
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/Services']">Services</a>
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/Projects']">Projects</a>
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/About-Us']">About Us</a>

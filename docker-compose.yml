@@ -1,18 +1,18 @@
-name: basics
+name: livelyco
 
 # services go here
 services:
 
   # backend container
-  basics:
-    image: garretpremo/basics
+  livelyco:
+    build: .
     ports:
       - 8156:8156
 
   # database container
-  database:
-    image: postgres
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_PASSWORD: mysecretpassword
+#  database:
+#    image: postgres
+#    ports:
+#      - 5432:5432
+#    environment:
+#      POSTGRES_PASSWORD: mysecretpassword

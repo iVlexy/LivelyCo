@@ -1,13 +1,13 @@
 #### Frontend Build Step ####
 FROM node:20 as build
-WORKDIR /basics
+WORKDIR /frontend
 
 # Install Frontend Dependencies
-COPY basics/package.json package.json
+COPY frontend/package.json package.json
 RUN npm install
 
 # Build frontend code
-COPY basics .
+COPY frontend .
 RUN npm run build
 
 
@@ -20,7 +20,7 @@ COPY server/package.json package.json
 RUN bun install
 
 # Copy Frontend Build
-COPY --from=build /basics/dist/basics ./public/
+COPY --from=build /frontend/dist/livelyco ./public/
 
 # Copy server files
 COPY server/src src

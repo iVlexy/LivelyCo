@@ -1,8 +1,8 @@
-name: basics
+name: livelyco
 services:
-  basics:
-    container_name: basics
-    image: garretpremo/basics
+  livelyco:
+    container_name: livelyco
+    image: ethanbrowning/LivelyFencing
     ports:
       - 8156:8156
     networks:

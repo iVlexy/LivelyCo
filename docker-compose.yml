@@ -8,6 +8,11 @@ services:
     build: .
     ports:
       - 8156:8156
+networks:
+    name: livelyco
+    external: true
+
+
 
   # database container
 #  database:

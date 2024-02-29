@@ -1,0 +1,16 @@
+
+- pages
+    - home page
+        - images
+        - request a quote
+    - past projects
+    - about us
+    - contact
+
+
+- header
+    - contact
+    - quote
+    - logo
+
+

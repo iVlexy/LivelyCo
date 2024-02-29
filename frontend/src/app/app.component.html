@@ -1,2 +1,15 @@
-<h1>Hello</h1>
-<router-outlet/>
+<mat-toolbar>
+  <button mat-icon-button aria-label="Menu icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Lively Fencing</h1>
+</mat-toolbar>
+<mat-sidenav-container [hasBackdrop]="isSmallScreen()">
+  <mat-sidenav #sidenav [mode]="isSmallScreen() ? 'over' : 'side'" [fixedInViewport]="isSmallScreen()">
+    <mat-nav-list (click)="isSmallScreen() ? sidenav.close() : null">
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet/>
+  </mat-sidenav-content>
+</mat-sidenav-container>

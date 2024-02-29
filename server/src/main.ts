@@ -10,3 +10,8 @@ const port = 8156;
 app.listen(port, () => {
     console.log(`Server listening on port ${ port }`);
 });
+
+process.on("SIGINT", () => {
+    console.log("Ctrl-C was pressed");
+    process.exit();
+});

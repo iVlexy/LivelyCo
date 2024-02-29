@@ -1,1 +1,11 @@
 .idea
+
+# Compiled output
+**/dist
+**/tmp
+
+# Node
+**/node_modules
+
+# Miscellaneous
+frontend/.angular/cache

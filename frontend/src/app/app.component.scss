@@ -20,14 +20,15 @@
   mat-toolbar {
     display: flex;
     gap: 1rem;
+    overflow: hidden;
 
     .logo {
       display: grid;
       place-content: center;
       cursor: pointer;
       img {
-        width: 50px;
-        height: 50px;
+        width: 38px;
+        height: 38px;
       }
     }
     .quick-navigation {

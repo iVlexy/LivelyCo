@@ -8,9 +8,9 @@
   </div>
   <div class="spacer"></div>
   <div class="quick-navigation">
-    <button mat-raised-button color="primary" [routerLink]="['/Services']">Services</button>
-    <button mat-raised-button color="primary" [routerLink]="['/Projects']">Projects</button>
-    <button mat-raised-button color="primary" [routerLink]="['/About-Us']">About Us</button>
+    <button mat-raised-button [hidden]="isSmallScreen()" color="primary" [routerLink]="['/Services']">Services</button>
+    <button mat-raised-button [hidden]="isSmallScreen()" color="primary" [routerLink]="['/Projects']">Projects</button>
+    <button mat-raised-button [hidden]="isSmallScreen()" color="primary" [routerLink]="['/About-Us']">About Us</button>
     <button class="phone-icon" mat-icon-button matTooltip="Contact" [routerLink]="['/Contact-Us']">
       <mat-icon>phone</mat-icon>
     </button>

@@ -8,10 +8,10 @@
     @if (!isSmallScreen()) {
 <!--      <button mat-raised-button color="primary" [routerLink]="['/Services']">Services</button>-->
 <!--      <button mat-raised-button color="primary" [routerLink]="['/Projects']">Projects</button>-->
-      <button mat-raised-button color="primary" [routerLink]="['/About-Us']">About Us</button>
-      <button mat-raised-button color="primary" [routerLink]="['/FAQ']">FAQ</button>
+      <button mat-raised-button color="primary" [routerLink]="['/About-Us']" aria-label="about us">About Us</button>
+      <button mat-raised-button color="primary" [routerLink]="['/FAQ']" aria-label="frequently asked questions">FAQ</button>
     }
-    <button class="phone-icon" mat-icon-button matTooltip="Contact" [routerLink]="['/Contact-Us']">
+    <button class="phone-icon" mat-icon-button matTooltip="Contact" [routerLink]="['/Contact-Us']" aria-label="contact">
       <mat-icon>phone</mat-icon>
     </button>
   </div>
@@ -25,7 +25,7 @@
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/About-Us']">About Us</a>
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/FAQ']">FAQ</a>
     </mat-nav-list>
-    <button class="phone-icon" mat-icon-button matTooltip="Contact" [routerLink]="['/Contact-Us']"><mat-icon>phone</mat-icon></button>
+    <button class="phone-icon" mat-icon-button matTooltip="Contact" [routerLink]="['/Contact-Us']" aria-label="contact"><mat-icon>phone</mat-icon></button>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet/>
@@ -35,7 +35,7 @@
   <mat-toolbar class="footer">
 
     <div class="nav-button">
-      <button mat-icon-button color="primary" [routerLink]="['']">
+      <button mat-icon-button color="primary" [routerLink]="['']" aria-label="home">
         <mat-icon>home</mat-icon>
       </button>
       <span>Home</span>
@@ -53,19 +53,19 @@
 <!--      <span>Projects</span>-->
 <!--    </div>-->
     <div class="nav-button">
-      <button mat-icon-button color="primary" [routerLink]="['/About-Us']">
+      <button mat-icon-button color="primary" [routerLink]="['/About-Us']" aria-label="about us">
         <mat-icon>info</mat-icon>
       </button>
       <span>About Us</span>
     </div>
     <div class="nav-button">
-      <button mat-icon-button color="primary" [routerLink]="['/FAQ']">
+      <button mat-icon-button color="primary" [routerLink]="['/FAQ']" aria-label="frequently asked questions">
         <mat-icon>help</mat-icon>
       </button>
       <span>FAQ</span>
     </div>
     <div class="nav-button">
-      <button mat-icon-button color="primary" [routerLink]="['/Contact-Us']">
+      <button mat-icon-button color="primary" [routerLink]="['/Contact-Us']" aria-label="contact us">
         <mat-icon>phone</mat-icon>
       </button>
       <span>Contact Us</span>

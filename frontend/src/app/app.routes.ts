@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
@@ -16,11 +13,11 @@ export const routes: Routes = [
   },
   {
     path: 'About-Us',
-    component: AboutUsComponent
+    loadComponent: () => import('./about-us/about-us.component').then(m => m.AboutUsComponent),
   },
   {
     path: 'Contact-Us',
-    component: ContactUsComponent
+    loadComponent: () => import('./contact-us/contact-us.component').then(m => m.ContactUsComponent),
   },
   // {
   //   path: 'Projects',
@@ -32,6 +29,6 @@ export const routes: Routes = [
   // },
   {
     path: 'FAQ',
-    component: FAQComponent
+    loadComponent: () => import('./faq/faq.component').then(m => m.FAQComponent)
   }
 ];

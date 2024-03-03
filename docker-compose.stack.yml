@@ -2,11 +2,13 @@ name: livelyco
 services:
   livelyco:
     container_name: livelyco
-    image: ethanbrowning/LivelyFencing
+    image: ethanbrowning/livelyfencing:latest
     ports:
-      - 8156:8156
+      - 8157:8157
     networks:
       nginxproxymanager:
+    environment:
+      PORT: 8157
 
 networks:
   nginxproxymanager:

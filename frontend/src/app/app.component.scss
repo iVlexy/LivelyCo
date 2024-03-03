@@ -43,4 +43,25 @@
   .spacer {
     flex: 1 1 auto;
   }
+
+  mat-toolbar.footer {
+    display: flex;
+    justify-content: space-around;
+
+    .nav-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+
+      > span {
+        width: 100%;
+        position: absolute;
+        font-size: 8px;
+        bottom: -9px;
+        color: #ffc107;
+      }
+    }
+  }
 }

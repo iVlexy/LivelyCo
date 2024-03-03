@@ -2,12 +2,14 @@
   <button mat-icon-button aria-label="Menu icon" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-    <img src="assets/companyname.png" alt="Photo of blackfencewithcompanyname" style="height: auto; width: 20%; border: 2px; border-color: white;" [hidden]="isSmallScreen()" [routerLink]="['']" class="toPointer">
+  <img src="assets/companyname.png" alt="Photo of blackfencewithcompanyname" style="height: auto; width: 20%; border: 2px; border-color: white;" [hidden]="isSmallScreen()" [routerLink]="['']" class="toPointer">
   <div class="spacer"></div>
   <div class="quick-navigation">
-    <button mat-raised-button [hidden]="isSmallScreen()" color="primary" [routerLink]="['/Services']">Services</button>
-    <button mat-raised-button [hidden]="isSmallScreen()" color="primary" [routerLink]="['/Projects']">Projects</button>
-    <button mat-raised-button [hidden]="isSmallScreen()" color="primary" [routerLink]="['/About-Us']">About Us</button>
+    @if (!isSmallScreen()) {
+      <button mat-raised-button color="primary" [routerLink]="['/Services']">Services</button>
+      <button mat-raised-button color="primary" [routerLink]="['/Projects']">Projects</button>
+      <button mat-raised-button color="primary" [routerLink]="['/About-Us']">About Us</button>
+    }
     <button class="phone-icon" mat-icon-button matTooltip="Contact" [routerLink]="['/Contact-Us']">
       <mat-icon>phone</mat-icon>
     </button>
@@ -28,3 +30,32 @@
     <router-outlet/>
   </mat-sidenav-content>
 </mat-sidenav-container>
+@if (isSmallScreen()) {
+  <mat-toolbar class="footer">
+
+    <div class="nav-button">
+      <button mat-icon-button color="primary" [routerLink]="['']">
+        <mat-icon>home</mat-icon>
+      </button>
+      <span>Home</span>
+    </div>
+    <div class="nav-button">
+      <button mat-icon-button color="primary" [routerLink]="['/Services']">
+        <mat-icon>fence</mat-icon>
+      </button>
+      <span>Services</span>
+    </div>
+    <div class="nav-button">
+      <button mat-icon-button color="primary" [routerLink]="['/Projects']">
+        <mat-icon>home_repair_service</mat-icon>
+      </button>
+      <span>Projects</span>
+    </div>
+    <div class="nav-button">
+      <button mat-icon-button color="primary" [routerLink]="['/About-Us']">
+        <mat-icon>info</mat-icon>
+      </button>
+      <span>About Us</span>
+    </div>
+  </mat-toolbar>
+}

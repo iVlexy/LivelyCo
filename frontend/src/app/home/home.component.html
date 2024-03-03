@@ -1,22 +1,40 @@
-<div>
-  <mat-card>
-    <img src="assets/images/blackfencewithcompname.png" alt="Photo of blackfencewithcompanyname" style="height: auto; width: 100%;">
+<img src="assets/images/blackfencewithcompname.png" alt="Photo of blackfencewithcompanyname" style="height: auto; width: 100%;">
+
+<main>
+  <mat-card class="top-card">
     <mat-card-header>
       <mat-card-title>Welcome to Lively Fencing</mat-card-title>
       <mat-card-subtitle>Your one-stop shop for top-quality fencing solutions.</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <mat-card-header>Whether you're looking to enhance your privacy, improve security, or simply define your property line, we're here to help. We offer a wide variety of fence styles, materials, and expert installation services to meet your unique needs and budget.</mat-card-header>
-      <mat-card-header>Here's what you can expect at Lively Fencing: 
-        <br>Wide range of fencing options: From classic wood and vinyl to modern metal and privacy fences, we have something to complement every style and property.
-        <br>Experienced and professional team: Our team of qualified fence installers takes pride in their craftsmanship and ensures every fence is built to last.
-        <br>Free consultations and estimates: We'll work with you to understand your vision and provide a free, no-obligation consultation and estimate.
-        <br>Exceptional customer service: We're committed to exceeding your expectations, from start to finish.
-        <br>
-        <br>
-      </mat-card-header>
-      </mat-card-content>
-     <mat-card-content>
+      <p>Whether you're looking to:</p>
+      <ul>
+        <li>Enhance your privacy</li>
+        <li>Improve security</li>
+        <li>Simply define your property line</li>
+      </ul>
+      <p>We're here to help! We offer a wide variety of fence styles, materials, and expert installation services to meet your unique needs and budget.</p>
+
+      <p>Here's what you can expect at Lively Fencing</p>
+      <h3>Wide range of fencing options:</h3>
+      <p>We have something to complement every style and property.</p>
+      <ul>
+        <li>Classic Wood</li>
+        <li>Vinyl</li>
+        <li>Modern Metal</li>
+        <li>Privacy Fences</li>
+      </ul>
+
+      <h3>Experienced and professional team:</h3>
+      <p>Our team of qualified fence installers takes pride in their craftsmanship and ensures every fence is built to last.</p>
+
+      <h3>Free consultations and estimates:</h3>
+      <p>We'll work with you to understand your vision and provide a free, no-obligation consultation and estimate.</p>
+
+      <h3>Exceptional customer service:</h3>
+      <p>We're committed to exceeding your expectations, from start to finish.</p>
+    </mat-card-content>
+    <mat-card-content>
       <mat-card>
         <mat-card-header>
           <mat-card-title>Ready to get started?</mat-card-title>
@@ -29,63 +47,65 @@
         </mat-card-actions>
       </mat-card>
     </mat-card-content>
-    <img src="assets/images/blackfencebottem.png" alt="Photo of blackfencebottem" style="height: auto; width: 100%;">
+    <!--  <img src="assets/images/blackfencebottem.png" alt="Photo of blackfencebottem" style="height: auto; width: 100%;">-->
   </mat-card>
-</div>
-<section>
-  <mat-card class="fencing-card-1">
-    <mat-card-header>
-      <mat-card-title>Agricultural Fencing</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="assets/images/IMG_5978.png" alt="Photo of Agricultural Fencing">
-    <mat-card-content>
-      <p>Placeholder content</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Previous</button>
-      <button mat-button>Next</button>
-    </mat-card-actions>
-  </mat-card>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</section>
-<section>
-  <mat-card class="fencing-card-1">
-    <mat-card-header>
-      <mat-card-title>Residential Fencing</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="assets/images/IMG_5984.png" alt="Photo of Residential Fencing">
-    <mat-card-content>
-      Placeholder Content
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Previous</button>
-      <button mat-button>Next</button>
-    </mat-card-actions>
-  </mat-card>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-</section>
-<section>
-  <mat-card class="fencing-card-1">
-    <mat-card-header>
-      <mat-card-title>Barn Construction</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="assets/images/IMG_5967.png" alt="Photo of Mostly Constructed Barn">
-    <mat-card-content>
-      Placeholder Content
-    </mat-card-content>
-  </mat-card>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</section>
-<footer>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Not looking for a fence?</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Check out our other services!</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button [routerLink]="['/Services']" mat-raised-button color="primary">Services</button>
-    </mat-card-actions>
-  </mat-card>
-</footer>
+
+  <section>
+    <mat-card class="fencing-card-1">
+      <mat-card-header>
+        <mat-card-title>Agricultural Fencing</mat-card-title>
+        <mat-card-subtitle>Secure your land and investment with agricultural fencing solutions</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="assets/images/IMG_5978.png" alt="Photo of Agricultural Fencing">
+      <mat-card-content>
+        <p>Here at Lively Fencing, we understand the importance of protecting your agricultural investment. Whether you're raising livestock, cultivating crops, or simply safeguarding your property line, we have the expertise and experience to design and install a secure and durable fence that meets your specific needs.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Previous</button>
+        <button mat-button>Next</button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+  <section>
+    <mat-card class="fencing-card-1">
+      <mat-card-header>
+        <mat-card-title>Residential Fencing</mat-card-title>
+        <mat-card-subtitle>Elevate Your Backyard with Residential Fencing Solutions</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="assets/images/IMG_5984.png" alt="Photo of Residential Fencing">
+      <mat-card-content>
+        <p>At Lively, we understand the desire to create a beautiful and functional outdoor space for your home. Whether you're seeking privacy, security, or simply enhancing the curb appeal of your property, we offer a wide variety of residential fencing options to meet your unique needs.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Previous</button>
+        <button mat-button>Next</button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+  <section>
+    <mat-card class="fencing-card-1">
+      <mat-card-header>
+        <mat-card-title>General Construction</mat-card-title>
+        <mat-card-subtitle>Master Your Small Construction Needs with Confidence</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="assets/images/IMG_5967.png" alt="Photo of Mostly Constructed Barn">
+      <mat-card-content>
+        <p>At Lively Fencing, we understand that even the "miscellaneous" construction projects on your list deserve quality service and expert execution. Whether you're tackling a small shed/barn renovation, grading your land, or adding a finishing touch to your landscaping, we offer a comprehensive range of miscellaneous construction services to bring your vision to life.</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+  <footer>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Not looking for a fence?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Check out our other services!</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [routerLink]="['/Services']" mat-raised-button color="primary">Services</button>
+      </mat-card-actions>
+    </mat-card>
+  </footer>
+
+</main>

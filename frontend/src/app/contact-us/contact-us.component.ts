@@ -9,7 +9,6 @@ import { MaterialModule } from '../material-module';
   imports: [MaterialModule, NgOptimizedImage],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss',
-  host: {ngSkipHydration: 'true'},
 })
 export class ContactUsComponent {
   constructor(title: Title, meta: Meta) {

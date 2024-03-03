@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { MaterialModule } from '../material-module';
 
 @Component({
@@ -6,8 +7,12 @@ import { MaterialModule } from '../material-module';
   standalone: true,
   imports: [MaterialModule],
   templateUrl: './about-us.component.html',
-  styleUrl: './about-us.component.scss'
+  styleUrl: './about-us.component.scss',
+  host: {ngSkipHydration: 'true'},
 })
 export class AboutUsComponent {
-
+  constructor(title: Title, meta: Meta) {
+    title.setTitle('About - Lively Fencing');
+    meta.updateTag({ name: 'description', content: 'About Lively Fencing Company' });
+  }
 }

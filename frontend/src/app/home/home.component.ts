@@ -1,20 +1,20 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { MaterialModule } from '../material-module';
+import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../material-module';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MaterialModule, RouterModule],
+  imports: [MaterialModule, RouterModule, NgOptimizedImage],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  host: {ngSkipHydration: 'true'},
 })
 export class HomeComponent {
-  formatLabel(value: number): string {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
-    }
-
-    return `${value}`;
+  constructor(title: Title, meta: Meta) {
+    title.setTitle('Home - Lively Fencing');
+    meta.updateTag({ name: 'description', content: 'Home landing page for Lively Fencing Company' });
   }
 }

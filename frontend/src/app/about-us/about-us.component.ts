@@ -8,7 +8,6 @@ import { MaterialModule } from '../material-module';
   imports: [MaterialModule],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.scss',
-  host: {ngSkipHydration: 'true'},
 })
 export class AboutUsComponent {
   constructor(title: Title, meta: Meta) {

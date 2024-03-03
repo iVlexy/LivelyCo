@@ -10,7 +10,6 @@ import { MaterialModule } from '../material-module';
   imports: [MaterialModule, RouterModule, NgOptimizedImage],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  host: {ngSkipHydration: 'true'},
 })
 export class HomeComponent {
   constructor(title: Title, meta: Meta) {

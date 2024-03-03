@@ -8,7 +8,6 @@ import { MaterialModule } from '../material-module';
   imports: [MaterialModule],
   templateUrl: './faq.component.html',
   styleUrl: './faq.component.scss',
-  host: {ngSkipHydration: 'true'},
 })
 export class FAQComponent {
   constructor(title: Title, meta: Meta) {

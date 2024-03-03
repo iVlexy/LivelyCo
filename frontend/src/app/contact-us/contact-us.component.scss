@@ -9,7 +9,7 @@
   width: 40%;
 
   [mat-card-image] {
-    max-height: 500px;
+    max-height: 660px;
     object-fit: cover;
   }
 }
@@ -23,7 +23,7 @@
       width: 100%;
 
       [mat-card-image] {
-        max-height: 70vw;
+        max-height: 85vw;
         object-fit: cover;
       }
     }

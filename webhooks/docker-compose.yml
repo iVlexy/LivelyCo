@@ -1,0 +1,15 @@
+name: livelyco-webhooks
+services:
+    webhook-handler:
+        build: .
+        container_name: livelyco-webhooks
+        ports:
+            - 8111:8111
+        networks:
+            - nginxproxymanager
+        volumes:
+            - /var/docker/sock:/var/docker/sock
+
+networks:
+    nginxproxymanager:
+        external: true

@@ -26,10 +26,8 @@ main.post('/webhook', async (request, res) => {
         const { workflow, workflow_run } = request.body;
 
         if (workflow.name === 'Docker Image CI' && workflow_run.conclusion === 'success') {
-            info('Github image build job succeeded, pulling...');
-            await execPromise('docker pull ethanbrowning/livelyfencing:latest');
-            info('Pulled image, deploying...');
-            await execPromise('docker container restart livelyco')
+            info('Github image build job succeeded, pulling and redeploying...');
+            await execPromise(`docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker:dind docker compose -p ${ process.env.COMPOSE_PROJECT } -f ${ process.env.COMPOSE_FILE_PATH } up -d`);
             info('Deployment Successful.');
         }
     } else {

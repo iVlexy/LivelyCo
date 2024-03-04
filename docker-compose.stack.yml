@@ -3,6 +3,8 @@ services:
   livelyco:
     container_name: livelyco
     image: ethanbrowning/livelyfencing:latest
+    restart: unless-stopped
+    pull_policy: always
     ports:
       - 8157:8157
     networks:

@@ -28,7 +28,7 @@ main.post('/webhook', async (request, res) => {
         if (workflow.name === 'Docker Image CI' && workflow_run.conclusion === 'success') {
             info('Github image build job succeeded, pulling and redeploying...');
             await execPromise(`docker run --rm -v /var/run/docker.sock:/var/run/docker.sock docker:dind `
-                + `docker compose -p ${ process.env.COMPOSE_PROJECT } -f ${ process.env.COMPOSE_FILE_DIR }/${ process.env.COMPOSE_FILE_NAME } up -d`);
+                + `docker compose -p ${ process.env.COMPOSE_PROJECT } -f ./compose/${ process.env.COMPOSE_FILE_NAME } up -d`);
             info('Deployment Successful.');
         }
     } else {

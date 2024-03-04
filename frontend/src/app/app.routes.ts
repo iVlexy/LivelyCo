@@ -19,10 +19,10 @@ export const routes: Routes = [
     path: 'Contact-Us',
     loadComponent: () => import('./contact-us/contact-us.component').then(m => m.ContactUsComponent),
   },
-  // {
-  //   path: 'Projects',
-  //   component: ProjectsComponent
-  // },
+  {
+    path: 'Projects',
+    loadComponent: () => import('./projects/projects.component').then(m => m.ProjectsComponent)
+  },
   {
     path: 'Services',
     loadComponent: () => import('./services/services.component').then(m => m.ServicesComponent)

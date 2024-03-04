@@ -6,6 +6,8 @@ import { exec } from 'node:child_process';
 const execPromise = promisify(exec);
 
 const WEBHOOK_SECRET: string = process.env.WEBHOOK_SECRET;
+const DOCKER_USER = process.env.DOCKER_USER;
+const DOCKER_PAT = process.env.DOCKER_PAT;
 
 const main = express();
 main.use(express.json());
@@ -39,8 +41,9 @@ main.post('/webhook', async (request, res) => {
 
 // Start the server
 const port = 8111;
-main.listen(port, () => {
+main.listen(port, async () => {
     console.log(`Server listening on port ${ port }`);
+    await execPromise(`docker login -u ${ DOCKER_USER } -p ${ DOCKER_PAT }`);
 });
 
 const verify_signature = (req) => {

@@ -19,6 +19,13 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
+  // TODO: this doesn't work. need to run this on a different node server and connect with a proxy.
+  server.post('/api/contact', async (req, res) => {
+    const { name, phone, email, services, details } = req.body;
+    console.log(name, phone, email, services, details);
+    res.sendStatus(200);
+  });
+
   server.use(compression());
 
   // Example Express Rest API endpoints

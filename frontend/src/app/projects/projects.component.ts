@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { MaterialModule } from '../material-module';
 import { CommonModule } from '@angular/common';
 import { ImageDisplayComponent } from './image-display/image-display.component';
@@ -10,19 +10,6 @@ import { ImageDisplayComponent } from './image-display/image-display.component';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
-export class ProjectsComponent implements OnInit{
-  ngOnInit(): void {
-    this.getImages()
-  }
-
-  images: string[] = []
-  getImages(){
-    const testFolder = '/assets/images/';
-    const fs = require('fs');
-    fs.readdirSync(testFolder).forEach((file: any) => {
-      console.log(file);
-      this.images.push(file)
-    })
-  }
+export class ProjectsComponent{
  
 }

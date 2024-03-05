@@ -21,7 +21,7 @@
     <mat-nav-list (click)="isSmallScreen() ? sidenav.close() : null">
        <a mat-list-item routerLinkActive="selected" [routerLink]="['']">Home</a>
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/Services']">Services</a>
-       <a mat-list-item routerLinkActive="selected" [routerLink]="['/Projects']">Projects</a>
+       <a mat-list-item routerLinkActive="selected" [routerLink]="['/Projects']">Projects</a>     
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/About-Us']">About Us</a>
        <a mat-list-item routerLinkActive="selected" [routerLink]="['/FAQ']">FAQ</a>
     </mat-nav-list>
@@ -46,7 +46,7 @@
       </button>
       <span>Services</span>
     </div>
-    <div class="nav-button">
+     <div class="nav-button">
       <button mat-icon-button color="primary" [routerLink]="['/Projects']">
         <mat-icon>home_repair_service</mat-icon>
       </button>

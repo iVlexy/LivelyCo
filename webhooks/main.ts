@@ -1,11 +1,11 @@
-import express from 'express';
 import * as crypto from 'crypto';
-import { promisify } from 'node:util';
+import express from 'express';
 import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
 
 const execPromise = promisify(exec);
 
-const WEBHOOK_SECRET: string = process.env.WEBHOOK_SECRET;
+const { DOCKER_USER, DOCKER_PAT, COMPOSE_FILE_DIR, COMPOSE_FILE_NAME, COMPOSE_PROJECT, WEBHOOK_SECRET } = process.env;
 
 const main = express();
 main.use(express.json());
@@ -27,8 +27,9 @@ main.post('/webhook', async (request, res) => {
 
         if (workflow.name === 'Docker Image CI' && workflow_run.conclusion === 'success') {
             info('Github image build job succeeded, pulling and redeploying...');
-            await execPromise(`docker run --rm -v /var/run/docker.sock:/var/run/docker.sock docker:dind `
-                + `docker compose -p ${ process.env.COMPOSE_PROJECT } -f ./compose/${ process.env.COMPOSE_FILE_NAME } up -d`);
+            await execPromise(`docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v ${ COMPOSE_FILE_DIR }:/compose docker:cli /bin/sh -c "`
+                + `docker login -u ${ DOCKER_USER} -p ${ DOCKER_PAT }; `
+                + `docker compose -p ${ COMPOSE_PROJECT } -f ./compose/${ COMPOSE_FILE_NAME } up -d"`);
             info('Deployment Successful.');
         }
     } else {

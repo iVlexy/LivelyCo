@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './image-display.component.scss'
 })
 export class ImageDisplayComponent {
-
+  
 }

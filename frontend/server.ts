@@ -65,3 +65,8 @@ function run(): void {
 }
 
 run();
+
+process.on("SIGTERM", () => {
+  console.log("Ctrl-C was pressed");
+  process.exit();
+});

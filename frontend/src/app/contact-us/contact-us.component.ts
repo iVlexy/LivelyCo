@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, isDevMode, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Meta, Title } from '@angular/platform-browser';
 import { MaterialModule } from '../material-module';
 
@@ -13,6 +14,7 @@ import { MaterialModule } from '../material-module';
 })
 export class ContactUsComponent {
   #http = inject(HttpClient);
+  #snackbar = inject(MatSnackBar);
 
   name = signal('');
   phone = signal('');
@@ -21,6 +23,7 @@ export class ContactUsComponent {
   description = signal('');
 
   submitted = false;
+  success = signal(false);
 
   services = [
     'Fence Construction',
@@ -48,17 +51,30 @@ export class ContactUsComponent {
       description: this.description(),
     };
 
-    this.#http.post('/api/contact', data).subscribe({
+    this.#http.post('http://localhost:8158/contact', data).subscribe({
       next: () => {
         if (isDevMode()) {
           console.log('contact submission successful');
         }
+        this.submitted = false;
+        this.#snackbar.open('Submission received!');
+        this.clear();
+        this.success.set(true);
       },
       error: () => {
         if (isDevMode()) {
           console.error('contact submission failed');
         }
+        this.submitted = false;
       }
     });
+  }
+
+  clear() {
+    this.name.set('');
+    this.phone.set('');
+    this.email.set('');
+    this.selectedServices.set([]);
+    this.description.set('');
   }
 }

@@ -9,8 +9,19 @@ services:
       - 8157:8157
     networks:
       nginxproxymanager:
+      livelyco:
     environment:
       PORT: 8157
+
+  lively_backend:
+    build: ./server
+    container_name: lively_backend
+    ports:
+      - 8158:8158
+    networks:
+      livelyco:
+    volumes:
+      - ./contact-entries:/backend/data
 
 networks:
   nginxproxymanager:

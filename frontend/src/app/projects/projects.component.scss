@@ -37,7 +37,6 @@ section {
     &:nth-child(even) {
       flex-direction: row-reverse;
       padding-left: 0;
-      padding-right: 20%;
     }
   
     .mat-mdc-card {
@@ -61,6 +60,7 @@ section {
   
       .mat-mdc-card {
         width: 100%;
+        max-height: 470px;
       }
   
       p {

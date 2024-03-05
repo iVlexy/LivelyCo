@@ -1,6 +1,13 @@
-<img src="/assets/images/IMG_5977.png">
-<img src="/assets/images/IMG_5978.jpg">
-<img src="/assets/images/IMG_5978.png">
-<img src="/assets/images/IMG_5979.png">
-<img src="/assets/images/IMG_5982.png">
-<img src="/assets/images/IMG_5987.png">
+<div class="boundary"
+     [style.min-width.px]="boundarySize() + 510"
+     [style.max-width.px]="boundarySize() + 510"
+     [style.left.px]="-510">
+  <div class="carousel" cdkDrag cdkDragLockAxis="x" cdkDragBoundary=".boundary" [style.left.px]="510">
+    <img #img src="/assets/images/IMG_5977.png">
+    <img #img src="/assets/images/IMG_5978.jpg">
+<!--    <img #img src="/assets/images/IMG_5978.png">-->
+<!--    <img #img src="/assets/images/IMG_5979.png">-->
+<!--    <img #img src="/assets/images/IMG_5982.png">-->
+<!--    <img #img src="/assets/images/IMG_5987.png">-->
+  </div>
+</div>

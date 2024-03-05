@@ -5,14 +5,36 @@
     width: 100%;
     overflow: auto;
     gap: 2rem;
-  
+
     main {
       padding: 1rem;
       display: flex;
       flex-direction: row;
       gap: 1rem;
     }
+}
+
+@media screen and (min-width: 601px) {
+  :host {
+    overflow: hidden;
+
+    .boundary {
+      display: flex;
+      position: relative;
+    }
+
+    .carousel {
+      display: flex;
+      user-select: none;
+      position: relative;
+    }
+
+    img {
+      width: 510px;
+      object-fit: scale-down;
+    }
   }
+}
 
   @media screen and (max-width: 600px) {
     :host { gap: 0; }
@@ -34,7 +56,7 @@ section {
     padding-left: 20%;
     gap: 5rem;
 
-  
+
     .mat-mdc-card {
       width: 600px;
       img {
@@ -43,7 +65,7 @@ section {
         max-height: 600px;
       }
     }
-  
+
     > p {
       display: flex;
       align-items: center;
@@ -57,13 +79,13 @@ section {
       padding: 0;
       flex-direction: row;
       gap: 1rem;
-  
+
       &:nth-child(even) {
         flex-direction: row;
         padding-left: 0;
         padding-right: 0;
       }
-  
+
       .mat-mdc-card {
         width: 100%;
         img {
@@ -72,7 +94,7 @@ section {
           max-height: 100%;
         }
       }
-  
+
       p {
         top: 0;
       }

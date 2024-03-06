@@ -1,28 +1,31 @@
 import express from 'express';
 import { writeFileSync } from 'node:fs';
 import { format } from 'date-fns';
-import { nodemailer } from 'nodemailer'
+import nodemailer from 'nodemailer'
 
 const app = express();
 
-const user = process.env['USER_EMAIL']
-const pass = process.env['USER_PASS']
-const sendTo = 'services@livelyfencing.com'
+const user = process.env['USER_EMAIL'];
+const pass = process.env['USER_PASS'];
+const sendTo = process.env['SEND_TO'];
 const host = process.env['HOST'] ?? 'localhost';
 const frontendPort = process.env['FRONTEND_PORT'] ?? 8157;
 const corsUrl = `http://${host}:${frontendPort}`;
 
 const main = async () => {
+
+    console.info('Logging into email...');
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: { user, pass }
     });
 
     await transporter.verify()
-    .catch(error => {
-        console.error(error);
-        process.exit(1);
-    });
+        .catch(error => {
+            console.error(error);
+            process.exit(1);
+        });
+    console.info('Successfully logged into email!');
 
     console.info(`Allowing CORS from ${corsUrl}`);
 

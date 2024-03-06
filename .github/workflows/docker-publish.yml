@@ -3,6 +3,10 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+  workflow_run:
+    workflows: [ "Docker Backend Image CI" ]
+    types:
+      - completed
 
 jobs:
   push_to_registry:

@@ -26,6 +26,8 @@ services:
     environment:
       HOST: $HOST
       FRONTEND_PORT: $FRONTEND_PORT
+      USER_EMAIL: $USER_EMAIL
+      USER_PASS: $USER_PASS
     volumes:
       - ./contact-entries:/backend/data
     healthcheck:

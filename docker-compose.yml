@@ -9,7 +9,7 @@ services:
       - 8157:8157
     restart: unless-stopped
     environment:
-      PORT: 8157
+      FRONTEND_PORT: 8157
     networks:
       livelyco:
 
@@ -22,6 +22,14 @@ services:
       livelyco:
     volumes:
       - ./contact-entries:/backend/data
+    environment:
+      FRONTEND_PORT: 8157
+    healthcheck:
+      test: bun /backend/src/health || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
 networks:
   livelyco:

@@ -51,7 +51,7 @@ export class ContactUsComponent {
       description: this.description(),
     };
 
-    this.#http.post('http://localhost:8158/contact', data).subscribe({
+    this.#http.post('contact', data).subscribe({
       next: () => {
         if (isDevMode()) {
           console.log('contact submission successful');

@@ -46,12 +46,12 @@ const main = async () => {
             JSON.stringify(req.body, null, 4)
         );
         try {
-            const message = req.body
+            const message = req.body;
             await transporter.sendMail({
                 from: `"Lively Fencing Bot" <${user}>`,
                 to: sendTo,
                 subject: "New Quote Request",
-                text: `"${JSON.parse(message)}"`,
+                text: `${JSON.stringify(message, null, 4)}`,
             });
             console.info(`Sent email successfully to ${sendTo}`);
             res.send({ message: 'Success' });

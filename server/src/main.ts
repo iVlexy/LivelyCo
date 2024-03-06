@@ -54,7 +54,7 @@ const main = async () => {
                 from: `"Lively Fencing Bot" <${user}>`,
                 to: sendTo,
                 subject: "New Quote Request",
-                html: `"${HTMLFile}"`
+                html: `${HTMLFile}`
             });
             console.info(`Sent email successfully to ${sendTo}`);
             res.send({ message: 'Success' });

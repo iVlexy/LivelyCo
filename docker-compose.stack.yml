@@ -28,6 +28,7 @@ services:
       FRONTEND_PORT: $FRONTEND_PORT
       USER_EMAIL: $USER_EMAIL
       USER_PASS: $USER_PASS
+      SEND_TO: $SEND_TO
     volumes:
       - ./contact-entries:/backend/data
     healthcheck:

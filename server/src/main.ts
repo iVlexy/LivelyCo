@@ -2,6 +2,7 @@ import express from 'express';
 import { writeFileSync } from 'node:fs';
 import { format } from 'date-fns';
 import nodemailer from 'nodemailer'
+import { readFileSync } from 'fs';
 
 const app = express();
 
@@ -46,12 +47,14 @@ const main = async () => {
             JSON.stringify(req.body, null, 4)
         );
         try {
-            const message = req.body;
+            const message = req.body
+            var HTMLFile = readFileSync('./QuoteBot.html', 'utf-8');
+            HTMLFile = HTMLFile.replace("$NAME", message.name).replace("$PHONE", message.phone).replace("$EMAIL", message.email).replace("$SERVICES", message.selectedServices.join(', ')).replace("$DESCRIPTION", message.description);
             await transporter.sendMail({
                 from: `"Lively Fencing Bot" <${user}>`,
                 to: sendTo,
                 subject: "New Quote Request",
-                text: `${JSON.stringify(message, null, 4)}`,
+                html: `"${HTMLFile}"`
             });
             console.info(`Sent email successfully to ${sendTo}`);
             res.send({ message: 'Success' });

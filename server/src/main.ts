@@ -48,13 +48,13 @@ const main = async () => {
         );
         try {
             const message = req.body
-            var HTMLFile = readFileSync('./QuoteBot.html', 'utf-8');
-            HTMLFile = HTMLFile.replace("$NAME", message.name).replace("$PHONE", message.phone).replace("$EMAIL", message.email).replace("$SERVICES", message.selectedServices.join(', ')).replace("$DESCRIPTION", message.description);
+            let html = readFileSync('./src/QuoteBot.html', 'utf-8');
+            html = html.replace("$NAME", message.name).replace("$PHONE", message.phone).replace("$EMAIL", message.email).replace("$SERVICES", message.selectedServices.join(', ')).replace("$DESCRIPTION", message.description);
             await transporter.sendMail({
                 from: `"Lively Fencing Bot" <${user}>`,
                 to: sendTo,
                 subject: "New Quote Request",
-                html: `${HTMLFile}`
+                html,
             });
             console.info(`Sent email successfully to ${sendTo}`);
             res.send({ message: 'Success' });

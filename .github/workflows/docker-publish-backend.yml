@@ -25,16 +25,16 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ secrets.DOCKER_USER }}/LivelyFencing
+          images: ${{ secrets.DOCKER_USER }}/livelyfencing-backend
           tags: type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./server
+          file: ./server/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/LivelyFencing:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/livelyfencing-backend:latest
           cache-to: type=inline

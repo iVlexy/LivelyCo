@@ -1,7 +1,7 @@
-name: livelyco
+name: lively-staging
 services:
   livelyco:
-    container_name: livelyco
+    container_name: lively-staging
     build:
       context: .
       dockerfile: ./Staging.Dockerfile

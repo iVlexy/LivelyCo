@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 node /livelyco/frontend/server/server.mjs &
 

@@ -34,7 +34,7 @@ jobs:
           context: .
           file: ./Staging.Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/livelyfencing-staging
+          tags: ${{ secrets.DOCKER_USER }}/livelyfencing-staging:latest
 #          labels: ${{ steps.meta.outputs.labels }}
 #          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/livelyfencing-backend:latest
 #          cache-to: type=inline

@@ -1,8 +1,7 @@
 import express from 'express';
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync } from 'node:fs';
 import { format } from 'date-fns';
 import nodemailer from 'nodemailer'
-import { readFileSync } from 'fs';
 
 const app = express();
 
@@ -11,7 +10,9 @@ const pass = process.env['USER_PASS'];
 const sendTo = process.env['SEND_TO'];
 const host = process.env['HOST'] ?? 'localhost';
 const frontendPort = process.env['FRONTEND_PORT'] ?? 8157;
-const corsUrl = `http://${host}:${frontendPort}`;
+const prod = process.env['PROD'] === 'true';
+
+const corsUrl = `${ prod ? 'https' : 'http' }://${host}:${frontendPort}`;
 
 const main = async () => {
 

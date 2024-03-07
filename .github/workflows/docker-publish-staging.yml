@@ -2,7 +2,7 @@ name: Docker Backend Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "staging" ]
 
 jobs:
   push_to_registry:
@@ -31,10 +31,10 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./server
-          file: ./server/Dockerfile
+          context: .
+          file: ./Staging.Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/livelyfencing-backend
+          tags: ${{ secrets.DOCKER_USER }}/livelyfencing-staging
 #          labels: ${{ steps.meta.outputs.labels }}
 #          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/livelyfencing-backend:latest
 #          cache-to: type=inline

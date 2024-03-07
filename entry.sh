@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-node /livelyco/frontend/server/server.mjs &
+cd /home/lively/frontend
+node server/server.mjs &
 
-cd /livelyco/backend
-bun ./src/main.ts
+cd /home/lively/backend
+bun src/main.ts

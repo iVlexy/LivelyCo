@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install unzip curl && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://bun.sh/install | bash
 RUN ln -s /root/.bun/bin/bun /bin/bun
 
-CMD ["tail", "-f", "/dev/null"]
 WORKDIR /livelyco/backend
 COPY ./server/package.json ./
 RUN bun install

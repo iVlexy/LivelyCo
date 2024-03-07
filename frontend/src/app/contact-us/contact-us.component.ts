@@ -30,6 +30,7 @@ export class ContactUsComponent {
     'Grading',
     'Fence Painting',
     'Barn/Shed Construction',
+    'Retaining Walls',
     'Bobcat Operations',
     'Other'
   ];

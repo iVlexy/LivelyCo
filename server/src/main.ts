@@ -1,9 +1,6 @@
 import express from 'express';
-import { writeFileSync, readFileSync } from 'node:fs';
-import { format } from 'date-fns';
-import nodemailer from 'nodemailer'
-
-console.info('app starting');
+import { readFileSync } from 'node:fs';
+import nodemailer from 'nodemailer';
 
 const app = express();
 
@@ -14,7 +11,7 @@ const host = process.env['HOST'] ?? 'localhost';
 const frontendPort = process.env['FRONTEND_PORT'] ?? 8157;
 const prod = process.env['PROD'] === 'true';
 
-const corsUrl = `${ prod ? 'https' : 'http' }://${host}:${frontendPort}`;
+const corsUrl = `${ prod ? 'https' : 'http' }://${host}${prod ? '' : ':' + frontendPort }`;
 
 const main = async () => {
 
@@ -45,10 +42,6 @@ const main = async () => {
     });
 
     app.post('/contact', async (req, res) => {
-        writeFileSync(
-            `data/contact-entry-${format(new Date(), 'dd-MM-yyyy-hhmmss')}.json`,
-            JSON.stringify(req.body, null, 4)
-        );
         try {
             const message = req.body
             let html = readFileSync('./src/QuoteBot.html', 'utf-8');

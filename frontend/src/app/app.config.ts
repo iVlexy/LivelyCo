@@ -14,7 +14,7 @@ const interceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHan
 
   // direct http client requests to the server
   return next(req.clone({
-    url: `${location.protocol}//${location.hostname}:${ environment.apiPort }${environment.apiPrefix}/${req.url}`
+    url: `${location.protocol}//${location.hostname}${environment.apiPrefix}/${req.url}`
   }));
 };
 

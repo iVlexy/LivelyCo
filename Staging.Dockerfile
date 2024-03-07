@@ -6,12 +6,11 @@ COPY /frontend/angular.json /frontend/server.ts /frontend/tsconfig.app.json /fro
 COPY /frontend/src src
 RUN npm run build-staging
 
-FROM node:20-slim
+FROM imbios/bun-node
 
 RUN useradd -ms /bin/bash lively
 USER lively
 WORKDIR /home/lively
-RUN npm install -g bun
 
 WORKDIR /home/lively/backend
 COPY ./server/package.bun.json ./package.json

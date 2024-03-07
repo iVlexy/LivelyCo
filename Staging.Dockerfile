@@ -6,14 +6,12 @@ COPY /frontend/angular.json /frontend/server.ts /frontend/tsconfig.app.json /fro
 COPY /frontend/src src
 RUN npm run build-staging
 
-FROM node:20-bullseye-slim
+FROM node:20-slim
 
-RUN apt-get update -y && apt-get install unzip curl -y && rm -rf /var/lib/apt/lists/*
 RUN useradd -ms /bin/bash lively
 USER lively
 WORKDIR /home/lively
-RUN curl -fsSL https://bun.sh/install | bash
-ENV PATH="${PATH}:/home/lively/.bun/bin"
+RUN npm install -g bun
 
 WORKDIR /home/lively/backend
 COPY ./server/package.bun.json ./package.json

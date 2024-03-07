@@ -6,13 +6,11 @@
 }
 
 .mat-mdc-card {
-  width: 30%;
+  width: 40%;
 
-  .mat-mdc-card-content {
-    display: flex;
-    flex-direction: column;
-    padding-top: 1rem;
-    gap: 1rem;
+  [mat-card-image] {
+    max-height: 660px;
+    object-fit: cover;
   }
 }
 

@@ -48,7 +48,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['FRONTEND_PORT'] || 8157;
+  const port = process.env['PORT'] || 4000;
 
   // Start up the Node server
   const server = app();
@@ -58,8 +58,3 @@ function run(): void {
 }
 
 run();
-
-process.on("SIGTERM", () => {
-  console.log("Ctrl-C was pressed");
-  process.exit();
-});

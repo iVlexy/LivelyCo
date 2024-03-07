@@ -3,10 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-#  workflow_run:
-#    workflows: [ "Docker Backend Image CI" ]
-#    types:
-#      - completed
 
 jobs:
   push_to_registry:
@@ -36,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./BackAndFront.Dockerfile
+          file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

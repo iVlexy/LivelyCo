@@ -1,5 +1,4 @@
 server/node_modules/
 
 frontend/node_modules/
-webhooks/node_modules/
 **/*.spec.*

@@ -8,4 +8,5 @@ RUN npm run build
 FROM node:20
 WORKDIR /livelyco
 COPY --from=build /frontend/dist/livelyco/ ./
+ENV PORT=8156
 CMD [ "node", "./server/server.mjs" ]

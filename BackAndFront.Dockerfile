@@ -21,6 +21,7 @@ WORKDIR /livelyco/frontend
 COPY --from=build /frontend/dist/livelyco/ ./
 
 ENV PROD=true
-WORKDIR /
-COPY --chmod=ugo+rx entry.sh entry.sh
+WORKDIR /livelyco
+COPY entry.sh entry.sh
+RUN chmod ugo+rx entry.sh
 ENTRYPOINT [ "./entry.sh" ]

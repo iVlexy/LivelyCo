@@ -2,10 +2,10 @@ name: lively-staging
 services:
   livelyco:
     container_name: lively-staging
-    build:
-      context: .
-      dockerfile: ./Staging.Dockerfile
-#    image: ethanbrowning/livelyfencing-staging
+#    build:
+#      context: .
+#      dockerfile: ./Staging.Dockerfile
+    image: ethanbrowning/livelyfencing-staging
     restart: unless-stopped
     pull_policy: always
     ports:

@@ -9,19 +9,21 @@ RUN npm run build-staging
 FROM node:20
 
 RUN apt-get update && apt-get install unzip curl && rm -rf /var/lib/apt/lists/*
+RUN useradd -ms /bin/bash newuser
+USER lively
+WORKDIR /home/lively
 RUN curl -fsSL https://bun.sh/install | bash
-RUN ln -s /root/.bun/bin/bun /bin/bun
 
-WORKDIR /livelyco/backend
-COPY ./server/package.bun.json ./package.json
+WORKDIR /home/lively/backend
+COPY ./server/package.json ./
 RUN bun install
 COPY ./server/src src
 
-WORKDIR /livelyco/frontend
+WORKDIR /home/lively/frontend
 COPY --from=build /frontend/dist/livelyco/ ./
 
 ENV PROD=true
-WORKDIR /livelyco
+WORKDIR /home/lively
 COPY entry.sh entry.sh
 RUN chmod ugo+rx entry.sh
 ENTRYPOINT [ "./entry.sh" ]

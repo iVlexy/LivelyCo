@@ -1,11 +1,44 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Stephen Lively</mat-card-title>
-    <mat-card-subtitle>Lively Fencing</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="assets/images/stephen-small.jpg" alt="Photo of Stephen Lively">
-  <mat-card-content>
-    <p>Request a quote today!</p>
-    <p>Call or text <a href="tel:678-310-4196">678-310-4196</a> to get a quote!</p>
-  </mat-card-content>
-</mat-card>
+@if (success()) {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Thank you!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>We will reach out to you shortly.</mat-card-content>
+  </mat-card>
+} @else {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Request a Quote</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input type="text" matInput [(ngModel)]="name" autocomplete="name"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input type="text" matInput [(ngModel)]="phone" autocomplete="tel"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="text" matInput [(ngModel)]="email" autocomplete="email"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Service(s)</mat-label>
+        <mat-select [(ngModel)]="selectedServices" [multiple]="true">
+          @for (service of services; track service) {
+            <mat-option [value]="service">{{ service }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Details (Optional)</mat-label>
+        <textarea matInput placeholder="Please provide us with any additional details"
+                  [(ngModel)]="description"></textarea>
+      </mat-form-field>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+}

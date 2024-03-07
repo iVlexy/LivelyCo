@@ -28,4 +28,4 @@ WORKDIR /home/lively
 COPY --chmod=u+x --chown=lively:lively entry.sh entry.sh
 EXPOSE 8148
 EXPOSE 8147
-ENTRYPOINT [ "./entry.sh" ]
+ENTRYPOINT [ "bash", "/home/lively/entry.sh" ]

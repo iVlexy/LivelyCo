@@ -3,6 +3,8 @@ import { writeFileSync, readFileSync } from 'node:fs';
 import { format } from 'date-fns';
 import nodemailer from 'nodemailer'
 
+console.info('app starting');
+
 const app = express();
 
 const user = process.env['USER_EMAIL'];
@@ -68,7 +70,7 @@ const main = async () => {
         }
     });
     // Start the server
-    const port = 8158;
+    const port = process.env['BACKEND_PORT'] || 8158;
     app.listen(port, () => {
         console.log(`Server listening on port ${port}`);
     });

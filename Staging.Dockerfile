@@ -13,7 +13,7 @@ RUN curl -fsSL https://bun.sh/install | bash
 RUN ln -s /root/.bun/bin/bun /bin/bun
 
 WORKDIR /livelyco/backend
-COPY ./server/package.json ./
+COPY ./server/package.bun.json ./package.json
 RUN bun install
 COPY ./server/src src
 

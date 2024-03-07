@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install unzip curl && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://bun.sh/install | bash
 RUN ln -s /root/.bun/bin/bun /bin/bun
 
-CMD ["tail", "-f", "/dev/null"]
 WORKDIR /livelyco/backend
 COPY ./server/package.json ./
 RUN bun install
@@ -23,5 +22,5 @@ COPY --from=build /frontend/dist/livelyco/ ./
 
 ENV PROD=true
 WORKDIR /livelyco
-COPY --chmod=ugo+rx entry.sh entry.sh
-ENTRYPOINT [ "./entry.sh" ]
+COPY --chmod=ugo+x entry.sh /entry.sh
+ENTRYPOINT [ "/entry.sh" ]

@@ -9,7 +9,7 @@ RUN npm run build
 FROM node:20
 
 RUN apt-get update && apt-get install unzip curl && rm -rf /var/lib/apt/lists/*
-RUN useradd -ms /bin/bash newuser
+RUN useradd -ms /bin/bash lively
 USER lively
 WORKDIR /home/lively
 RUN curl -fsSL https://bun.sh/install | bash

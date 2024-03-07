@@ -16,7 +16,7 @@ RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="${PATH}:/home/lively/.bun/bin"
 
 WORKDIR /home/lively/backend
-COPY ./server/package.json ./
+COPY ./server/package.bun.json ./package.json
 RUN bun install
 COPY ./server/src src
 
@@ -25,5 +25,5 @@ COPY --from=build /frontend/dist/livelyco/ ./
 
 ENV PROD=true
 WORKDIR /home/lively
-COPY --chmod=ugo+x entry.sh entry.sh
-ENTRYPOINT [ "./entry.sh" ]
+COPY --chmod=u+x --chown=lively:lively entry.sh entry.sh
+ENTRYPOINT [ "bash", "/home/lively/entry.sh" ]

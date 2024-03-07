@@ -32,6 +32,7 @@
 section {
     display: flex;
     padding-left: 20%;
+    padding-right: 20%;
     gap: 5rem;
     max-height: 500px;
     &:nth-child(even) {

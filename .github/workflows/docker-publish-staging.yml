@@ -1,8 +1,8 @@
-name: Docker Image CI
+name: Docker Staging Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "staging" ]
 
 jobs:
   push_to_registry:
@@ -25,16 +25,16 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ secrets.DOCKER_USER }}/LivelyFencing
-          tags: type=raw,value=production,enable={{is_default_branch}}
+          images: ${{ secrets.DOCKER_USER }}/livelyfencing
+          tags: type=raw,value=staging,enable=true
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Staging.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/LivelyFencing:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/livelyfencing:latest
           cache-to: type=inline

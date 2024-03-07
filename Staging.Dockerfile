@@ -6,9 +6,9 @@ COPY /frontend/angular.json /frontend/server.ts /frontend/tsconfig.app.json /fro
 COPY /frontend/src src
 RUN npm run build-staging
 
-FROM node:20
+FROM node:20-bullseye-slim
 
-RUN apt-get update && apt-get install unzip curl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && apt-get install unzip curl -y && rm -rf /var/lib/apt/lists/*
 RUN useradd -ms /bin/bash lively
 USER lively
 WORKDIR /home/lively
@@ -26,4 +26,6 @@ COPY --from=build /frontend/dist/livelyco/ ./
 ENV PROD=true
 WORKDIR /home/lively
 COPY --chmod=u+x --chown=lively:lively entry.sh entry.sh
-ENTRYPOINT [ "bash", "/home/lively/entry.sh" ]
+EXPOSE 8148
+EXPOSE 8147
+ENTRYPOINT [ "./entry.sh" ]

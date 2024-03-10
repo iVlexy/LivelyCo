@@ -2,7 +2,7 @@ name: livelyco
 services:
   livelyco:
     container_name: livelyco
-    image: ethanbrowning/livelyfencing:latest
+    image: ethanbrowning/livelyfencing:production
     restart: unless-stopped
     pull_policy: always
     ports:

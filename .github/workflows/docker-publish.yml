@@ -36,5 +36,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/LivelyFencing:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USER }}/LivelyFencing:production
           cache-to: type=inline

@@ -27,5 +27,5 @@ services:
       timeout: 10s
 
 networks:
-  nginxproxymanager:
+  proxy:
     external: true

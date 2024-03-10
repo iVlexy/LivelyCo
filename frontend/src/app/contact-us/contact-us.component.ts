@@ -54,7 +54,7 @@ export class ContactUsComponent {
     const data = {
       name: this.name(),
       phone: this.phone(),
-      email: this.emailControl,
+      email: this.email(),
       selectedServices: this.selectedServices(),
       description: this.description(),
     };

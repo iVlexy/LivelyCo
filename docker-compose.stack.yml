@@ -8,10 +8,10 @@ services:
     ports:
       - 8157:8157
     networks:
-      proxy:
+      nginxproxymanager:
     environment:
       PORT: 8157
 
 networks:
-  proxy:
+  nginxproxymanager:
     external: true

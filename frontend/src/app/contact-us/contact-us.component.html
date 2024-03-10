@@ -13,19 +13,44 @@
     <mat-card-content>
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input type="text" matInput [(ngModel)]="name" autocomplete="name"/>
+        <input 
+        type="text" 
+        matInput 
+        #nameForm = "ngModel"
+        [(ngModel)]="name" 
+        autocomplete="name"
+        required
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Phone</mat-label>
-        <input type="text" matInput [(ngModel)]="phone" autocomplete="tel"/>
+        <input 
+        type="text"
+        #phoneForm = "ngModel"
+        matInput 
+        [(ngModel)]="phone" 
+        autocomplete="tel"
+        required
+        shownMaskExpression="'(___) ___-____'"
+        mask="(000) 000-0000"
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input type="text" matInput [(ngModel)]="email" autocomplete="email"/>
+        <input 
+        type="text"
+        #emailForm = "ngModel"
+        matInput 
+        [(ngModel)]="email" 
+        autocomplete="email"
+        mask="A*@A*.SSS"
+        [validation]="true"
+        required
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Service(s)</mat-label>
-        <mat-select [(ngModel)]="selectedServices" [multiple]="true">
+        <mat-select [(ngModel)]="selectedServices" [multiple]="true" required #serviceForm = "ngModel">
           @for (service of services; track service) {
             <mat-option [value]="service">{{ service }}</mat-option>
           }
@@ -37,7 +62,8 @@
                   [(ngModel)]="description"></textarea>
       </mat-form-field>
       <mat-card-actions align="end">
-        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        @if (nameForm.hasError('required') || phoneForm.hasError('mask') || phoneForm.hasError('required') || emailForm.hasError('required') || emailForm.hasError('mask') || serviceForm.hasError('required')) {}
+        @else {<button mat-raised-button color="primary" (click)="submit()">Submit</button >}
       </mat-card-actions>
     </mat-card-content>
   </mat-card>

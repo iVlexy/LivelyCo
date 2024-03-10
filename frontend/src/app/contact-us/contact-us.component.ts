@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Meta, Title } from '@angular/platform-browser';
 import { MaterialModule } from '../material-module';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [ MaterialModule, FormsModule ],
+  imports: [ MaterialModule, FormsModule, NgxMaskDirective, NgxMaskPipe ],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss',
 })

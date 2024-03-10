@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, isDevMode, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Meta, Title } from '@angular/platform-browser';
 import { MaterialModule } from '../material-module';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [ MaterialModule, FormsModule, NgxMaskDirective, NgxMaskPipe ],
+  imports: [ MaterialModule, FormsModule, NgxMaskDirective, NgxMaskPipe, ReactiveFormsModule ],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss',
 })
@@ -35,6 +36,11 @@ export class ContactUsComponent {
     'Bobcat Operations',
     'Other'
   ];
+  EmailPatternValidator() {
+    return Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i);
+  }
+  
+  emailControl = new FormControl('', [ Validators.required, this.EmailPatternValidator() ]);
 
   constructor(title: Title, meta: Meta) {
     title.setTitle('Contact - Lively Fencing');
@@ -48,7 +54,7 @@ export class ContactUsComponent {
     const data = {
       name: this.name(),
       phone: this.phone(),
-      email: this.email(),
+      email: this.emailControl,
       selectedServices: this.selectedServices(),
       description: this.description(),
     };

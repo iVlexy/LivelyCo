@@ -14,7 +14,7 @@
                                 Agriculture Fences
                             </p>
                         </mat-card-title>
-                        <app-agriculture-images></app-agriculture-images>
+                        <ng-image-slider [images]="imageAgriObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
                     </mat-card>  
                 </section>
                 <section>
@@ -24,7 +24,7 @@
                                 Residential Fences
                             </p>
                         </mat-card-title>
-                        <app-residential-images></app-residential-images>
+                        <ng-image-slider [images]="imageResObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
                     </mat-card>  
                 </section>    <section>
                     <mat-card class="mat-mdc-card">
@@ -33,7 +33,7 @@
                                 Retaining Walls
                             </p>
                         </mat-card-title>
-                        <app-retainingwall-images></app-retainingwall-images>
+                        <ng-image-slider [images]="imageRetObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
                     </mat-card>  
                 </section>    <section>
                     <mat-card class="mat-mdc-card">
@@ -42,7 +42,7 @@
                                 Barns
                             </p>
                         </mat-card-title>
-                        <app-barn-images></app-barn-images>
+                        <ng-image-slider [images]="imageBarnObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
                     </mat-card>  
                 </section>    <section>
                     <mat-card class="mat-mdc-card">
@@ -51,7 +51,7 @@
                                 Grading and Gravel Laying
                             </p>
                         </mat-card-title>
-                        <app-grading-images></app-grading-images>
+                        <ng-image-slider [images]="imageGradeObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
                     </mat-card>  
                 </section>    <section>
                     <mat-card class="mat-mdc-card">
@@ -60,7 +60,7 @@
                                 Gates
                             </p>
                         </mat-card-title>
-                        <app-gate-images></app-gate-images>
+                        <ng-image-slider [images]="imageGateObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
                     </mat-card>  
                 </section>
             </mat-card-content>

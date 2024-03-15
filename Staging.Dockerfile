@@ -1,7 +1,7 @@
 FROM node:20 as build
 WORKDIR /frontend
 COPY /frontend/package.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY /frontend/angular.json /frontend/server.ts /frontend/tsconfig.app.json /frontend/tsconfig.json ./
 COPY /frontend/src src
 RUN npm run build-staging
@@ -16,6 +16,7 @@ WORKDIR /home/lively/backend
 COPY ./server/package.bun.json ./package.json
 RUN bun install
 COPY ./server/src src
+COPY ./server/apikey.json apikey.json 
 
 WORKDIR /home/lively/frontend
 COPY --from=build /frontend/dist/livelyco/ ./

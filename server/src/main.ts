@@ -4,11 +4,6 @@ import nodemailer from 'nodemailer';
 import { GoogleAuth } from 'google-auth-library';
 import { drive_v3 as drive } from '@googleapis/drive';
 
-const auth = new GoogleAuth({
-    keyFilename: '/apikey.json',
-    scopes: [ 'https://www.googleapis.com/auth/drive.readonly' ]
-});
-export const driveApi = new drive.Drive({ auth });
 
 
 
@@ -20,8 +15,16 @@ const sendTo = process.env['SEND_TO'];
 const host = process.env['HOST'] ?? 'localhost';
 const frontendPort = process.env['FRONTEND_PORT'] ?? 8157;
 const prod = process.env['PROD'] === 'true';
+const keyFilename = process.env['KEY_FILE']
+const driveid = process.env['DRIVE_ID'];
 
 const corsUrl = `${ prod ? 'https' : 'http' }://${host}${prod ? '' : ':' + frontendPort }`;
+
+const auth = new GoogleAuth({
+    keyFilename,
+    scopes: [ 'https://www.googleapis.com/auth/drive.readonly' ]
+});
+export const driveApi = new drive.Drive({ auth });
 
 const main = async () => {
 
@@ -74,9 +77,11 @@ const main = async () => {
     });
     
     app.get('/imageapi', async (req, res) => {
-        await driveApi.files.get({
+        let result = await driveApi.files.get({
             fileId: driveid,
         });
+        res.send(result)
+
     });
     // Start the server
     const port = process.env['BACKEND_PORT'] || 8158;

@@ -2,17 +2,17 @@ name: lively-staging
 services:
   livelyco:
     container_name: lively-staging
-#    build:
-#      context: .
-#      dockerfile: ./Staging.Dockerfile
-    image: ethanbrowning/livelyfencing:staging
+    build:
+      context: .
+      dockerfile: ./Staging.Dockerfile
+    #image: ethanbrowning/livelyfencing:staging
     restart: unless-stopped
     pull_policy: always
     ports:
       - $FRONTEND_PORT:$FRONTEND_PORT
       - $BACKEND_PORT:$BACKEND_PORT
-    networks:
-      nginxproxymanager:
+    # networks:
+    #  nginxproxymanager:
     environment:
       HOST: $HOST
       FRONTEND_PORT: $FRONTEND_PORT
@@ -20,6 +20,9 @@ services:
       USER_EMAIL: $USER_EMAIL
       USER_PASS: $USER_PASS
       SEND_TO: $SEND_TO
+      NODE_ENV: $NODE_ENV
+      KEY_FILE: $KEY_FILE
+      DRIVE_ID: $DRIVE_ID
 #    volumes:
 #      - ./contact-entries:/home/lively/backend/data
     healthcheck:
@@ -29,6 +32,6 @@ services:
       start_period: 20s
       timeout: 10s
 
-networks:
-  nginxproxymanager:
-    external: true
+#networks:
+#  nginxproxymanager:
+#    external: true

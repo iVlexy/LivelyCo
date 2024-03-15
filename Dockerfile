@@ -1,7 +1,8 @@
 FROM node:20 as build
 WORKDIR /frontend
-COPY /frontend/package.json /frontend/angular.json /frontend/server.ts /frontend/tsconfig.app.json /frontend/tsconfig.json ./
+COPY /frontend/package.json ./
 RUN npm install --legacy-peer-deps
+COPY /frontend/angular.json /frontend/server.ts /frontend/tsconfig.app.json /frontend/tsconfig.json ./
 COPY /frontend/src src
 RUN npm run build
 

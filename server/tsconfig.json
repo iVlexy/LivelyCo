@@ -1,0 +1,19 @@
+{
+  "extends": "@tsconfig/node-lts/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": false,
+    "paths": {
+      "@e23/types": [
+        "../models/index.ts"
+      ]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  "typeRoots": [
+    "node_modules/@types"
+  ]
+}

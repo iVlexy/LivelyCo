@@ -80,7 +80,7 @@ const main = async () => {
         let result = await driveApi.files.get({
             fileId: driveid,
         });
-        res.send(result)
+        res.send(result.data);
 
     });
     // Start the server

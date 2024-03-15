@@ -13,3 +13,5 @@ frontend/.angular/cache
 contact-entries/
 
 server/apikey.json
+
+.env

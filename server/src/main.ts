@@ -1,6 +1,16 @@
 import express from 'express';
 import { readFileSync } from 'node:fs';
 import nodemailer from 'nodemailer';
+import { GoogleAuth } from 'google-auth-library';
+import { drive_v3 as drive } from '@googleapis/drive';
+
+const auth = new GoogleAuth({
+    keyFilename: '/apikey.json',
+    scopes: [ 'https://www.googleapis.com/auth/drive.readonly' ]
+});
+export const driveApi = new drive.Drive({ auth });
+
+
 
 const app = express();
 
@@ -61,6 +71,12 @@ const main = async () => {
             res.status(500);
             res.send({ message: 'Something went wrong' });
         }
+    });
+    
+    app.get('/imageapi', async (req, res) => {
+        await driveApi.files.get({
+            fileId: driveid,
+        });
     });
     // Start the server
     const port = process.env['BACKEND_PORT'] || 8158;

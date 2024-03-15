@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { MaterialModule } from '../material-module';
 import { CommonModule } from '@angular/common';
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -10,43 +10,43 @@ import { NgImageSliderModule } from 'ng-image-slider';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
-export class ProjectsComponent{
+export class ProjectsComponent {
   imageAgriObject: Array<object> = [
-{
-    image: '/assets/images/IMG_5977.png',
-    thumbImage: '/assets/images/IMG_5977.png'
-},
-{
-  image: '/assets/images/IMG_5978.png',
-  thumbImage: '/assets/images/IMG_5978.png'
-},
-{
-  image: '/assets/images/IMG_5979.png',
-  thumbImage: '/assets/images/IMG_5979.png'
-},
-{
-  image: '/assets/images/IMG_5982.png',
-  thumbImage: '/assets/images/IMG_5982.png'
-},
-{
-  image: '/assets/images/IMG_5987.png',
-  thumbImage: '/assets/images/IMG_5987.png'
-},
-];
-imageResObject: Array<object> = [
-  {
+    {
+      image: '/assets/images/IMG_5977.png',
+      thumbImage: '/assets/images/IMG_5977.png'
+    },
+    {
+      image: '/assets/images/IMG_5978.png',
+      thumbImage: '/assets/images/IMG_5978.png'
+    },
+    {
+      image: '/assets/images/IMG_5979.png',
+      thumbImage: '/assets/images/IMG_5979.png'
+    },
+    {
+      image: '/assets/images/IMG_5982.png',
+      thumbImage: '/assets/images/IMG_5982.png'
+    },
+    {
+      image: '/assets/images/IMG_5987.png',
+      thumbImage: '/assets/images/IMG_5987.png'
+    },
+  ];
+  imageResObject: Array<object> = [
+    {
       image: '/assets/images/IMG_5984.jpg',
       thumbImage: '/assets/images/IMG_5984.jpg'
-  },
-  {
-    image: '/assets/images/IMG_5991.png',
-    thumbImage: '/assets/images/IMG_5991.png'
-  },
+    },
+    {
+      image: '/assets/images/IMG_5991.png',
+      thumbImage: '/assets/images/IMG_5991.png'
+    },
   ];
   imageRetObject: Array<object> = [
     {
-        image: '/assets/images/IMG_5951.jpg',
-        thumbImage: '/assets/images/IMG_5951.jpg'
+      image: '/assets/images/IMG_5951.jpg',
+      thumbImage: '/assets/images/IMG_5951.jpg'
     },
     {
       image: '/assets/images/IMG_5948.jpg',
@@ -123,8 +123,8 @@ imageResObject: Array<object> = [
       thumbImage: '/assets/images/IMG_5943.jpg'
     },
     {
-    image: '/assets/images/IMG_5999.jpg',
-    thumbImage: '/assets/images/IMG_5999.jpg'
+      image: '/assets/images/IMG_5999.jpg',
+      thumbImage: '/assets/images/IMG_5999.jpg'
     },
   ];
 }

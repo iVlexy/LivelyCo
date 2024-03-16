@@ -11,3 +11,5 @@
 frontend/.angular/cache
 
 contact-entries/
+
+.env

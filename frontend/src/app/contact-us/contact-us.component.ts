@@ -77,6 +77,21 @@ export class ContactUsComponent {
       }
     });
   }
+  getImages(){
+    let folderIds = [
+      '1k5vFkZvd5FtKj1JEjjk5B3_-6TRnnZDV', //GatePhotos
+      '18G715MLGZtk75leJLUkQ8Vy2-gbtgZq0', //GradingAndGravelPhotos
+      '1OR5n7aawS_pcgObDu7dW-hGMO1Vdb5uf', //BarnPhotos
+      '1uNdp9Fvbgzla0rCg_bK3f1angzjJ5tUQ', //RetainingWallPhotos
+      '1_bWdsFYRHWTBtOT1BVePwm0QRhr-jcqH', //ResidentialFencePhotos
+      '1jGxjUhtJiGH3wgabdeQ_CH7xMN4uEt1L'  //AgricultureFencePhotos
+  ]
+    folderIds.forEach(dId => {
+      this.#http.get('/imageapi', )
+    });
+    
+  }
+ 
 
   clear() {
     this.name.set('');

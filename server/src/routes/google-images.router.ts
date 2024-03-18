@@ -38,9 +38,9 @@ googleImagesRouter.get('/photos/:imageId', async (req, res) => {
     const blob = image.data as unknown as Blob;
     const data = await blob.arrayBuffer();
 
-    // res.setHeader('content-disposition', image.headers['content-disposition']);
-    res.setHeader('content-length', +image.headers['content-length']);
+    res.type(blob.type)
+
     res.setHeader('alt-svc', image.headers['alt-svc']);
     res.setHeader('content-type', image.headers['content-type']);
-    res.send(data);
+    res.send(Buffer.from(data));
 });

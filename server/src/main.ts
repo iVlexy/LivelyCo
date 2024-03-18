@@ -4,6 +4,7 @@ import nodemailer from 'nodemailer';
 import { GoogleAuth } from 'google-auth-library';
 import { drive_v3 as drive } from '@googleapis/drive';
 import { File } from 'node:buffer';
+import { json } from 'stream/consumers';
 
 const app = express();
 
@@ -12,15 +13,15 @@ const pass = process.env['USER_PASS'];
 const sendTo = process.env['SEND_TO'];
 const host = process.env['HOST'] ?? 'localhost';
 const frontendPort = process.env['FRONTEND_PORT'] ?? 8157;
-const prod = process.env['PROD'] === 'true';
+const prod = process.env['NODE_ENV'] != 'production';
 const keyFilename = process.env['KEY_FILE']
 const driveId = process.env['DRIVE_ID'];
 
-const corsUrl = `${ prod ? 'https' : 'http' }://${host}${prod ? '' : ':' + frontendPort }`;
+const corsUrl = `${prod ? 'https' : 'http'}://${host}:${frontendPort}`;
 
 const auth = new GoogleAuth({
     keyFilename,
-    scopes: [ 'https://www.googleapis.com/auth/drive.readonly' ]
+    scopes: ['https://www.googleapis.com/auth/drive.readonly']
 });
 export const driveApi = new drive.Drive({ auth });
 
@@ -73,61 +74,34 @@ const main = async () => {
             res.send({ message: 'Something went wrong' });
         }
     });
-    
-    
-        app.get('/imageapi', async (req, res) => {
+
+
+
+    app.get('/AgricultureFencePhotos', async (req, res) => {
             let result = await driveApi.files.list({
-            q: `'1jGxjUhtJiGH3wgabdeQ_CH7xMN4uEt1L' in parents`,
-            fields: 'files(name)'
+                q: `'1jGxjUhtJiGH3wgabdeQ_CH7xMN4uEt1L' in parents`,
+                fields: 'files(id)'
             });
-            res.send(result.data.files);
-        });
+            res.send(result.data.files.map(file => file.id))
+});
 
 
-    //     {
-    //         "kind": "drive#file",
-    //         "mimeType": "application/vnd.google-apps.folder",
-    //         "id": "1k5vFkZvd5FtKj1JEjjk5B3_-6TRnnZDV",
-    //         "name": "GatePhotos"
-    //     },
-    //     {
-    //         "kind": "drive#file",
-    //         "mimeType": "application/vnd.google-apps.folder",
-    //         "id": "18G715MLGZtk75leJLUkQ8Vy2-gbtgZq0",
-    //         "name": "GradingAndGravelPhotos"
-    //     },
-    //     {
-    //         "kind": "drive#file",
-    //         "mimeType": "application/vnd.google-apps.folder",
-    //         "id": "1OR5n7aawS_pcgObDu7dW-hGMO1Vdb5uf",
-    //         "name": "BarnPhotos"
-    //     },
-    //     {
-    //         "kind": "drive#file",
-    //         "mimeType": "application/vnd.google-apps.folder",
-    //         "id": "1uNdp9Fvbgzla0rCg_bK3f1angzjJ5tUQ",
-    //         "name": "RetainingWallPhotos"
-    //     },
-    //     {
-    //         "kind": "drive#file",
-    //         "mimeType": "application/vnd.google-apps.folder",
-    //         "id": "1_bWdsFYRHWTBtOT1BVePwm0QRhr-jcqH",
-    //         "name": "ResidentialFencePhotos"
-    //     },
-    //     {
-    //         "kind": "drive#file",
-    //         "mimeType": "application/vnd.google-apps.folder",
-    //         "id": "1jGxjUhtJiGH3wgabdeQ_CH7xMN4uEt1L",
-    //         "name": "AgricultureFencePhotos"
-    //     },
+let driveIDs = [
+    '1k5vFkZvd5FtKj1JEjjk5B3_-6TRnnZDV', //GatePhotos
+    '18G715MLGZtk75leJLUkQ8Vy2-gbtgZq0', //GradingAndGravelPhotos
+    '1OR5n7aawS_pcgObDu7dW-hGMO1Vdb5uf', //BarnPhotos
+    '1uNdp9Fvbgzla0rCg_bK3f1angzjJ5tUQ', //RetainingWallPhotos
+    '1_bWdsFYRHWTBtOT1BVePwm0QRhr-jcqH', //ResidentialFencePhotos
+    '1jGxjUhtJiGH3wgabdeQ_CH7xMN4uEt1L'  //AgricultureFencePhotos
+]
 
 
 
-    // Start the server
-    const port = process.env['BACKEND_PORT'] || 8158;
-    app.listen(port, () => {
-        console.log(`Server listening on port ${port}`);
-    });
+// Start the server
+const port = process.env['BACKEND_PORT'] || 8158;
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+});
 }
 main();
 

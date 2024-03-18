@@ -1,5 +1,5 @@
 // STAGING ENVIRONMENT
 export const environment = {
   production: true,
-  apiPrefix: '/api'
+  apiPrefix: ':8158'
 };

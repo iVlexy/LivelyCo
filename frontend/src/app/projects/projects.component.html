@@ -15,12 +15,15 @@
               {{ carousel.title }}
             </p>
           </mat-card-title>
-          @if (carousel.imageUrls) {
+          @if (carousel.imageIds) {
             <ng-image-slider #nav
+                             [lazyLoading]='true'
                              [images]="carousel | carouselImages"
                              [infinite]="true"
                              [animationSpeed]=".2"
                              [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
+          } @else {
+            <mat-spinner></mat-spinner>
           }
         </mat-card>
       </section>

@@ -19,7 +19,7 @@ interface Carousel {
   title: string;
   folderName: string;
   projectFolder: ProjectFolder;
-  imageUrls?: string[];
+  imageIds?: string[];
 }
 
 interface CarouselImages {
@@ -30,10 +30,10 @@ interface CarouselImages {
 @Pipe({ name: 'carouselImages', standalone: true })
 export class CarouselImagesPipe implements PipeTransform {
     transform(carousel: Carousel): CarouselImages[] {
-        return carousel.imageUrls.map(url => {
+        return carousel.imageIds.map(id => {
           return {
-            image: url,
-            thumbImage: url,
+            image: `http://localhost:8158/photos/folders/${id}`,
+            thumbImage: `http://localhost:8158/photos/folders/${id}`,
           }
         });
     }
@@ -92,11 +92,6 @@ export class ProjectsComponent implements OnInit{
       const images = untracked(this.carousels)
         .map(carousel => {
           return this.#http.get<string[]>(`photos/folders/${carousel.projectFolder}`)
-            .pipe(switchMap(imageIds => {
-              return forkJoin(
-                imageIds.map(imageId => this.#http.get(`photos/${imageId}`, { responseType: 'blob' }))
-              )
-            }));
         });
 
       forkJoin(images)
@@ -104,7 +99,7 @@ export class ProjectsComponent implements OnInit{
 
           this.carousels.update(carousels => {
             results.forEach((result, index) => {
-              carousels[index].imageUrls = result.map(blob => window.URL.createObjectURL(blob));
+              carousels[index].imageIds = result;
             });
 
             return carousels.slice();

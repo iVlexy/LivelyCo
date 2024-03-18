@@ -19,7 +19,7 @@ interface Carousel {
   title: string;
   folderName: string;
   projectFolder: ProjectFolder;
-  imageIds?: string[];
+  imageUrls?: string[];
 }
 
 interface CarouselImages {
@@ -30,10 +30,10 @@ interface CarouselImages {
 @Pipe({ name: 'carouselImages', standalone: true })
 export class CarouselImagesPipe implements PipeTransform {
     transform(carousel: Carousel): CarouselImages[] {
-        return carousel.imageIds.map(id => {
+        return carousel.imageUrls.map(url => {
           return {
-            image: `https://drive.google.com/thumbnail?id=${id}&sz=w1000`,
-            thumbImage: `https://drive.google.com/thumbnail?id=${id}&sz=w1000`
+            image: url,
+            thumbImage: url,
           }
         });
     }
@@ -94,21 +94,21 @@ export class ProjectsComponent implements OnInit{
           return this.#http.get<string[]>(`photos/folders/${carousel.projectFolder}`)
             .pipe(switchMap(imageIds => {
               return forkJoin(
-                imageIds.map(imageId => this.#http.get(`photos/${imageId}`, { responseType: 'arraybuffer' }))
+                imageIds.map(imageId => this.#http.get(`photos/${imageId}`, { responseType: 'blob' }))
               )
             }));
         });
 
       forkJoin(images)
         .subscribe((results) => {
-          console.log(results);
-          // this.carousels.update(carousels => {
-          //   results.forEach((result, index) => {
-          //     carousels[index].imageIds = result;
-          //   });
-          //
-          //   return carousels.slice();
-          // });
+
+          this.carousels.update(carousels => {
+            results.forEach((result, index) => {
+              carousels[index].imageUrls = result.map(blob => window.URL.createObjectURL(blob));
+            });
+
+            return carousels.slice();
+          });
         });
     }
   }

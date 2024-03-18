@@ -15,7 +15,7 @@
               {{ carousel.title }}
             </p>
           </mat-card-title>
-          @if (carousel.imageIds) {
+          @if (carousel.imageUrls) {
             <ng-image-slider #nav
                              [images]="carousel | carouselImages"
                              [infinite]="true"

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, Pipe, PipeTransform, PLATFORM_ID, signal, untracked } from '@angular/core';
 // @ts-ignore
 import { NgImageSliderModule } from 'ng-image-slider';
-import { forkJoin } from 'rxjs';
+import { forkJoin, switchMap } from 'rxjs';
 import { MaterialModule } from '../material-module';
 
 export enum ProjectFolder {
@@ -89,20 +89,26 @@ export class ProjectsComponent implements OnInit{
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
 
-      const requests = untracked(this.carousels)
+      const images = untracked(this.carousels)
         .map(carousel => {
-          return this.#http.get<string[]>(`photos/${carousel.projectFolder}`);
+          return this.#http.get<string[]>(`photos/folders/${carousel.projectFolder}`)
+            .pipe(switchMap(imageIds => {
+              return forkJoin(
+                imageIds.map(imageId => this.#http.get(`photos/${imageId}`, { responseType: 'arraybuffer' }))
+              )
+            }));
         });
 
-      forkJoin(requests)
+      forkJoin(images)
         .subscribe((results) => {
-          this.carousels.update(carousels => {
-            results.forEach((result, index) => {
-              carousels[index].imageIds = result;
-            });
-
-            return carousels.slice();
-          });
+          console.log(results);
+          // this.carousels.update(carousels => {
+          //   results.forEach((result, index) => {
+          //     carousels[index].imageIds = result;
+          //   });
+          //
+          //   return carousels.slice();
+          // });
         });
     }
   }

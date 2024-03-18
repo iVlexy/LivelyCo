@@ -1,26 +1,46 @@
 import { Router } from 'express';
+import { Blob } from 'node:buffer';
 import { driveApi } from '../drive/drive';
 import { getGoogleDriveFolderId, ProjectFolder } from '../project-folders.enum';
 
 export const googleImagesRouter = Router();
 
-googleImagesRouter.get('/photos/:folderId', async (req, res) => {
+googleImagesRouter.get('/photos/folders/:folderId', async (req, res) => {
     const folderId: ProjectFolder = +req.params.folderId;
 
     let result = await driveApi.files.list({
         q: `'${getGoogleDriveFolderId(folderId)}' in parents`,
-        fields: 'files(thumbnailLink)'
+        fields: 'files(id)'
     });
 
-    const thumbnailLinks = result.data.files.map(file => file.thumbnailLink);
+    const ids = result.data.files.map(file => file.id);
+    // const thumbnailLinks = result.data.files.map(file => file.thumbnailLink);
+    //
+    // const thumbnails = [];
+    //
+    // for (const thumbnailLink of thumbnailLinks) {
+    //     const response = await fetch(thumbnailLink);
+    //
+    //     thumbnails.push(response.body);
+    // }
 
-    const thumbnails = [];
+    res.send(ids);
+});
 
-    for (const thumbnailLink of thumbnailLinks) {
-        const response = await fetch(thumbnailLink);
+googleImagesRouter.get('/photos/:imageId', async (req, res) => {
+    const imageId: string = req.params.imageId;
 
-        thumbnails.push(await response.blob());
-    }
+    let image = await driveApi.files.get({
+        fileId: imageId,
+        alt: 'media',
+    });
 
-    res.send(thumbnails);
+    const blob = image.data as unknown as Blob;
+    const data = await blob.arrayBuffer();
+
+    // res.setHeader('content-disposition', image.headers['content-disposition']);
+    res.setHeader('content-length', +image.headers['content-length']);
+    res.setHeader('alt-svc', image.headers['alt-svc']);
+    res.setHeader('content-type', image.headers['content-type']);
+    res.send(data);
 });

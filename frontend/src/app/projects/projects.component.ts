@@ -1,178 +1,109 @@
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
-import { MaterialModule } from '../material-module';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { NgImageSliderModule } from 'ng-image-slider';
 import { HttpClient } from '@angular/common/http';
-import { ArrayType } from '@angular/compiler';
+import { Component, inject, OnInit, Pipe, PipeTransform, PLATFORM_ID, signal, untracked } from '@angular/core';
+// @ts-ignore
+import { NgImageSliderModule } from 'ng-image-slider';
+import { forkJoin } from 'rxjs';
+import { MaterialModule } from '../material-module';
+
+export enum ProjectFolder {
+  GatePhotos = 1,
+  GradingAndGravelPhotos,
+  BarnPhotos,
+  RetainingWallPhotos,
+  ResidentialFencePhotos,
+  AgricultureFencePhotos,
+}
+
+interface Carousel {
+  title: string;
+  folderName: string;
+  projectFolder: ProjectFolder;
+  imageIds?: string[];
+}
+
+interface CarouselImages {
+  image: string;
+  thumbImage: string;
+}
+
+@Pipe({ name: 'carouselImages', standalone: true })
+export class CarouselImagesPipe implements PipeTransform {
+    transform(carousel: Carousel): CarouselImages[] {
+        return carousel.imageIds.map(id => {
+          return {
+            image: `https://drive.google.com/thumbnail?id=${id}&sz=w1000`,
+            thumbImage: `https://drive.google.com/thumbnail?id=${id}&sz=w1000`
+          }
+        });
+    }
+}
+
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [MaterialModule, CommonModule, NgImageSliderModule],
+  imports: [ MaterialModule, CommonModule, NgImageSliderModule, CarouselImagesPipe ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
 export class ProjectsComponent implements OnInit{
 
   #http = inject(HttpClient);
+
+  carousels = signal<Carousel[]>([
+    {
+      title: 'Agriculture Fences',
+      folderName: 'AgricultureFencePhotos',
+      projectFolder: ProjectFolder.AgricultureFencePhotos
+    },
+    {
+      title: 'Residential Fences',
+      folderName: 'ResidentialFencePhotos',
+      projectFolder: ProjectFolder.ResidentialFencePhotos
+    },
+    {
+      title: 'Retaining Walls',
+      folderName: 'RetainingWallPhotos',
+      projectFolder: ProjectFolder.RetainingWallPhotos
+    },
+    {
+      title: 'Barns',
+      folderName: 'BarnPhotos',
+      projectFolder: ProjectFolder.BarnPhotos
+    },
+    {
+      title: 'Grading and Gravel Laying',
+      folderName: 'GradingAndGravelPhotos',
+      projectFolder: ProjectFolder.GradingAndGravelPhotos
+    },
+    {
+      title: 'Gates',
+      folderName: 'GatePhotos',
+      projectFolder: ProjectFolder.GatePhotos
+    }
+  ]);
+
   platformId = inject(PLATFORM_ID)
-  AgricultureFencePhotos: Array<object> = [];
-  ResidentialFencePhotos: Array<object> = [];
-  RetainingWallPhotos: Array<object> = [];
-  BarnPhotos: Array<object> = [];
-  GradingAndGravelPhotos: Array<object> = [];
-  GatePhotos: Array<object> = [];
-
-  imageObjs = [
-    this.AgricultureFencePhotos,
-    //this.ResidentialFencePhotos,
-    //this.RetainingWallPhotos,
-    //this.BarnPhotos,
-    //this.GradingAndGravelPhotos,
-   //this.GatePhotos
-  ]
-  folderNames = [
-    'AgricultureFencePhotos',
-    //'/ResidentialFencePhotos',
-    //'/RetainingWallPhotos',
-    //'/BarnPhotos',
-    //'/GradingAndGravelPhotos',
-    //'/GatePhotos'
-  ]
-
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      for (let index = 0; index < this.imageObjs.length; index++) {
-        this.getImages(this.imageObjs[index], this.folderNames[index])
-      }
+
+      const requests = untracked(this.carousels)
+        .map(carousel => {
+          return this.#http.get<string[]>(`photos/${carousel.projectFolder}`);
+        });
+
+      forkJoin(requests)
+        .subscribe((results) => {
+          this.carousels.update(carousels => {
+            results.forEach((result, index) => {
+              carousels[index].imageIds = result;
+            });
+
+            return carousels.slice();
+          });
+        });
     }
-
   }
-
-  getImages(imageFolder: Array<object>, folderName: string) {
-    this.#http.get<string[]>(folderName).subscribe(result => {
-      result.forEach(id => {
-        imageFolder.push(
-          {
-            image: `https://drive.google.com/thumbnail?id=${id}&sz=w1000`,
-            thumbImage: `https://drive.google.com/thumbnail?id=${id}&sz=w1000`
-          }
-        );
-      })
-
-    })
-  };
-
-
-
-
-
-
-
-
-
-
-
-
-  // imageAgriObject: Array<object> = [
-  //   {
-  //     image: 'https://drive.google.com/thumbnail?id=1DoOh23viWuI2nyWsqlT_ANEv7mQyO60w&sz=w1000',
-  //     thumbImage: 'https://drive.google.com/thumbnail?id=1DoOh23viWuI2nyWsqlT_ANEv7mQyO60w&sz=w1000',
-  //   }
-  // ];
-  imageResObject: Array<object> = [
-    {
-      image: '/assets/images/IMG_5984.jpg',
-      thumbImage: '/assets/images/IMG_5984.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5991.png',
-      thumbImage: '/assets/images/IMG_5991.png'
-    },
-  ];
-  imageRetObject: Array<object> = [
-    {
-      image: '/assets/images/IMG_5951.jpg',
-      thumbImage: '/assets/images/IMG_5951.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5948.jpg',
-      thumbImage: '/assets/images/IMG_5948.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5949.jpg',
-      thumbImage: '/assets/images/IMG_5949.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5947.jpg',
-      thumbImage: '/assets/images/IMG_5947.jpg'
-    },
-  ];
-  imageBarnObject: Array<object> = [
-    {
-      image: '/assets/images/IMG_5967.jpg',
-      thumbImage: '/assets/images/IMG_5967.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5968.png',
-      thumbImage: '/assets/images/IMG_5968.png'
-    },
-    {
-      image: '/assets/images/IMG_5969.png',
-      thumbImage: '/assets/images/IMG_5969.png'
-    },
-    {
-      image: '/assets/images/IMG_5970.png',
-      thumbImage: '/assets/images/IMG_5970.png'
-    },
-    {
-      image: '/assets/images/IMG_5971.png',
-      thumbImage: '/assets/images/IMG_5971.png'
-    },
-    {
-      image: '/assets/images/IMG_5972.png',
-      thumbImage: '/assets/images/IMG_5972.png'
-    },
-    {
-      image: '/assets/images/IMG_5980.png',
-      thumbImage: '/assets/images/IMG_5980.png'
-    },
-    {
-      image: '/assets/images/IMG_5981.png',
-      thumbImage: '/assets/images/IMG_5981.png'
-    },
-  ];
-  imageGradeObject: Array<object> = [
-    {
-      image: '/assets/images/IMG_5940.jpg',
-      thumbImage: '/assets/images/IMG_5940.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5956.jpg',
-      thumbImage: '/assets/images/IMG_5956.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5957.jpg',
-      thumbImage: '/assets/images/IMG_5957.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5959.jpg',
-      thumbImage: '/assets/images/IMG_5959.jpg'
-    },
-  ];
-  imageGateObject: Array<object> = [
-    {
-      image: '/assets/images/IMG_5945.jpg',
-      thumbImage: '/assets/images/IMG_5945.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5943.jpg',
-      thumbImage: '/assets/images/IMG_5943.jpg'
-    },
-    {
-      image: '/assets/images/IMG_5999.jpg',
-      thumbImage: '/assets/images/IMG_5999.jpg'
-    },
-  ];
 }

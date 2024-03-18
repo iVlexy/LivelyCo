@@ -1,69 +1,30 @@
-<main>    
-        <mat-card>
-            <mat-card-header style="display: flex; align-items: center; padding: 1rem; gap: 1rem;">
-                <mat-card-title>
-                    Here is a couple of our projects!
-                </mat-card-title>
-            </mat-card-header>
+<main>
+  <mat-card>
+    <mat-card-header style="display: flex; align-items: center; padding: 1rem; gap: 1rem;">
+      <mat-card-title>
+        Here is a couple of our projects!
+      </mat-card-title>
+    </mat-card-header>
+  </mat-card>
+  <mat-card-content>
+    @for (carousel of carousels(); track carousel.title) {
+      <section>
+        <mat-card class="mat-mdc-card">
+          <mat-card-title>
+            <p>
+              {{ carousel.title }}
+            </p>
+          </mat-card-title>
+          @if (carousel.imageIds) {
+            <ng-image-slider #nav
+                             [images]="carousel | carouselImages"
+                             [infinite]="true"
+                             [animationSpeed]=".2"
+                             [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
+          }
         </mat-card>
-            <mat-card-content>
-                <section>
-                    <mat-card class="mat-mdc-card">
-                        <mat-card-title>
-                            <p>
-                                Agriculture Fences
-                            </p>
-                        </mat-card-title>
-                        <ng-image-slider [images]="AgricultureFencePhotos" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
-                    </mat-card>  
-                </section>
-                <section>
-                    <mat-card class="mat-mdc-card">
-                        <mat-card-title>
-                            <p>
-                                Residential Fences
-                            </p>
-                        </mat-card-title>
-                        <ng-image-slider [images]="ResidentialFencePhotos" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
-                    </mat-card>  
-                </section>    <section>
-                    <mat-card class="mat-mdc-card">
-                        <mat-card-title>
-                            <p>
-                                Retaining Walls
-                            </p>
-                        </mat-card-title>
-                        <ng-image-slider [images]="RetainingWallPhotos" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
-                    </mat-card>  
-                </section>    <section>
-                    <mat-card class="mat-mdc-card">
-                        <mat-card-title>
-                            <p>
-                                Barns
-                            </p>
-                        </mat-card-title>
-                        <ng-image-slider [images]="imageBarnObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
-                    </mat-card>  
-                </section>    <section>
-                    <mat-card class="mat-mdc-card">
-                        <mat-card-title>
-                            <p>
-                                Grading and Gravel Laying
-                            </p>
-                        </mat-card-title>
-                        <ng-image-slider [images]="imageGradeObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
-                    </mat-card>  
-                </section>    <section>
-                    <mat-card class="mat-mdc-card">
-                        <mat-card-title>
-                            <p>
-                                Gates
-                            </p>
-                        </mat-card-title>
-                        <ng-image-slider [images]="imageGateObject" #nav [infinite]="true" [animationSpeed]=".2" [imageSize]="{width: '100%', height: '350px'}"></ng-image-slider>
-                    </mat-card>  
-                </section>
-            </mat-card-content>
+      </section>
+    }
+  </mat-card-content>
 </main>
 
- 

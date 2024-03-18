@@ -2,7 +2,7 @@
     "name": "livelyco-backend",
     "version": "0.0.0",
     "scripts": {
-        "start": "",
+        "start": "ts-node src/main.ts",
         "test": "jest"
     },
     "private": true,
